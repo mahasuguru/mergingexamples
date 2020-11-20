@@ -1,32 +1,34 @@
-function add(a, b) {
-    return a + b;
-}
-add("Hello ", "Steve"); // returns "Hello Steve"
-add(10, 20); // returns 30
-function printResult(value) {
-    console.log("Num is ", value);
-    return;
-}
-function addResult(num1, num2) {
-    return num1 + num2;
-}
-//let myFun;
-//myFun = printResult;
-//myFun(45); //This prints 45
-//As this is plain JS, I can still assign anyother value to myFun
-var myFun1;
-myFun1 = printResult;
-myFun1 = 19; // This is the new assignment, this compiles perfectly as myFun is of type any.
-myFun1(45);
-var myFun2; // Therefore, make a small change by assigning the type to the variable.
-myFun2 = printResult;
-//myFun2 = 19; // This line throws an error.
-myFun2(45);
-var myFun3;
-myFun3 = printResult;
-myFun3 = addResult; //However, this still works fine.
-myFun3(45);
-var myFun; //Once I assign the type using declaration, this solves the issue.
-myFun = printResult;
-//myFun = addResult;
-myFun(45);
+var __assign = (this && this.__assign) || function () {
+    __assign = Object.assign || function(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))
+                t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+var hobbies = ["Swimming", "Music"];
+var activeHobbies = ["Dancing"];
+activeHobbies.push("Reading", "Cycling"); // We can do like this
+activeHobbies.push.apply(// We can do like this
+activeHobbies, hobbies);
+console.log.apply(console, hobbies);
+console.log.apply(console, activeHobbies);
+var person1 = {
+    name: "JOHN",
+    age: 24
+};
+var p1 = person1;
+p1.age = 30;
+console.log(person1);
+console.log(p1); // Both will be updated. As they are referenced with memory.
+var person = {
+    name: "JOHN",
+    age: 24
+};
+var p2 = __assign({}, person);
+p2.age = 30;
+console.log(person);
+console.log(p2);
