@@ -1,31 +1,32 @@
-var name1 = "maha";
-var user;
-var bar;
-bar = 5;
-bar = "21";
-console.log(bar); //This is similar to Any with one difference.
-var bar1;
-bar1 = 5;
-bar1 = "21";
-var foo;
-//foo = bar1;
-console.log(bar); // This does not work
-var bar2;
-bar = 5;
-bar = "21";
-var foo1;
-if (typeof bar === "string") {
-    foo1 = bar;
+function add(a, b) {
+    return a + b;
 }
-console.log(bar); // This works due to Type assertion
-var dog1 = {
-    name: "TOM",
-    sayHello: function () { return "Hello DOG"; }
-};
-console.log(dog1.sayHello()); // This WORKS.
-var dog = {
-    name: "TOM",
-    sayHello: function () { return "Hello DOG"; }
-};
-console.log(dog.sayHello());
-//This works only after type assertion.
+add("Hello ", "Steve"); // returns "Hello Steve"
+add(10, 20); // returns 30
+function printResult(value) {
+    console.log("Num is ", value);
+    return;
+}
+function addResult(num1, num2) {
+    return num1 + num2;
+}
+//let myFun;
+//myFun = printResult;
+//myFun(45); //This prints 45
+//As this is plain JS, I can still assign anyother value to myFun
+var myFun1;
+myFun1 = printResult;
+myFun1 = 19; // This is the new assignment, this compiles perfectly as myFun is of type any.
+myFun1(45);
+var myFun2; // Therefore, make a small change by assigning the type to the variable.
+myFun2 = printResult;
+//myFun2 = 19; // This line throws an error.
+myFun2(45);
+var myFun3;
+myFun3 = printResult;
+myFun3 = addResult; //However, this still works fine.
+myFun3(45);
+var myFun; //Once I assign the type using declaration, this solves the issue.
+myFun = printResult;
+//myFun = addResult;
+myFun(45);

@@ -1,35 +1,46 @@
 
-let name1 = "maha";
-
-let user : unknown;
-let bar: unknown;
-bar = 5;
-bar = "21";
-console.log(bar); //This is similar to Any with one difference.
-let bar1: unknown;
-bar1 = 5;
-bar1 = "21";
-let foo: string;
-//foo = bar1;
-console.log(bar); // This does not work
-let bar2: unknown;
-bar = 5;
-bar = "21";
-let foo1: string;
-if (typeof bar === "string") {
-foo1 = bar;
-}
-console.log(bar); // This works due to Type assertion
-const dog1: any = {
-name: "TOM",
-sayHello: () => "Hello DOG",
-};
-console.log(dog1.sayHello()); // This WORKS.
-               
-const dog: unknown = {
-    name: "TOM",
-    sayHello: () => "Hello DOG",
-    };
-    console.log((dog as any).sayHello());
-    //This works only after type assertion.
-    
+/*function add(a: number, b: number): number {
+    return a + b;
+    }
+    function add(a: string, b: string): string {
+    return a + " " + b;
+    }
+    function add(a: any, b: any): any {
+    return a + b;
+    }*/
+    //This type of declaration throws an error. We have deal with this differently.
+    function add(a: string, b: string): string;
+    function add(a: number, b: number): number;
+    function add(a: any, b: any): any {
+    return a + b;
+    }
+    add("Hello ", "Steve"); // returns "Hello Steve"
+    add(10, 20); // returns 30
+ 
+    function printResult(value: number): undefined {
+    console.log("Num is ", value);
+    return;
+    }
+    function addResult(num1: number, num2: number) {
+    return num1 + num2;
+    }
+    //let myFun;
+//myFun = printResult;
+//myFun(45); //This prints 45
+//As this is plain JS, I can still assign anyother value to myFun
+let myFun1;
+myFun1 = printResult;
+myFun1= 19; // This is the new assignment, this compiles perfectly as myFun is of type any.
+myFun1(45);
+let myFun2: Function; // Therefore, make a small change by assigning the type to the variable.
+myFun2 = printResult;
+//myFun2 = 19; // This line throws an error.
+myFun2(45);
+let myFun3: Function;
+myFun3 = printResult;
+myFun3 = addResult; //However, this still works fine.
+myFun3(45);
+let myFun: (a: number) => number; //Once I assign the type using declaration, this solves the issue.
+myFun = printResult;
+//myFun = addResult;
+myFun(45);
