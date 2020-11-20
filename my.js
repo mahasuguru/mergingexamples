@@ -1,20 +1,31 @@
 var name1 = "maha";
+var user;
 var bar;
-bar = 'maha';
-bar = 45;
-// let foo = string | null ;
-// foo = 'lakshmi' ;
-// foo = null ;
-// foo = undefined // Wont work Once you Turn on strictNullCheck
-function combine(input1, input2) {
-    if (typeof input1 === "number" && typeof input2 === "number") {
-        return input1 + input2;
-    }
-    else {
-        return input1.toString() + input2.toString();
-    }
+bar = 5;
+bar = "21";
+console.log(bar); //This is similar to Any with one difference.
+var bar1;
+bar1 = 5;
+bar1 = "21";
+var foo;
+//foo = bar1;
+console.log(bar); // This does not work
+var bar2;
+bar = 5;
+bar = "21";
+var foo1;
+if (typeof bar === "string") {
+    foo1 = bar;
 }
-var sum = combine(23, 25);
-console.log("SUM is ", sum);
-var fullName = combine("maha ", "lakshmi");
-console.log(fullName);
+console.log(bar); // This works due to Type assertion
+var dog1 = {
+    name: "TOM",
+    sayHello: function () { return "Hello DOG"; }
+};
+console.log(dog1.sayHello()); // This WORKS.
+var dog = {
+    name: "TOM",
+    sayHello: function () { return "Hello DOG"; }
+};
+console.log(dog.sayHello());
+//This works only after type assertion.
